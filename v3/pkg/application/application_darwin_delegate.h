@@ -9,6 +9,8 @@
 @property bool shouldTerminateWhenLastWindowClosed;
 @property bool shuttingDown;
 - (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app;
+- (void)applicationDidGetURLEvent:(NSAppleEventDescriptor *) event withReplyEvent:(NSAppleEventDescriptor *)replyEvent;
+
 @end
 
 #endif

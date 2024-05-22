@@ -127,6 +127,10 @@ extern void cleanup();
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
+   NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventManager];
+   [appleEventManager setEventHandler:self
+                         andSelector:@selector(applicationDidGetURLEvent:withReplyEvent:)
+                         forEventClass:kInternetEventClass andEventID:kAEGetURL];
     if( hasListeners(EventApplicationWillFinishLaunching) ) {
         processApplicationEvent(EventApplicationWillFinishLaunching, NULL);
     }
@@ -161,6 +165,18 @@ extern void cleanup();
         processApplicationEvent(EventApplicationWillUpdate, NULL);
     }
 }
+
+- (void)applicationDidGetURLEvent:(NSAppleEventDescriptor *)event
+        withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
+    if( hasListeners(EventApplicationDidGetURLEvent) ) {
+        const char* urlString = [[[event paramDescriptorForKeyword:keyDirectObject] stringValue] UTF8String];
+//         processApplicationEvent(EventApplicationDidGetURLEvent, @{ @"URL": @("what the fuck"), @"test":  @(false) });
+        processApplicationEvent(EventApplicationDidGetURLEvent, @{@"URL": @(urlString)});
+
+    }
+}
+
+
 
 // GENERATED EVENTS END
 @end

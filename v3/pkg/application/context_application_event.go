@@ -50,8 +50,10 @@ func (c ApplicationEventContext) IsDarkMode() bool {
 func (c ApplicationEventContext) HasVisibleWindows() bool {
 	return c.getBool("hasVisibleWindows")
 }
-
-func (c ApplicationEventContext) setData(data map[string]any) {
+func (c *ApplicationEventContext) Data() map[string]any {
+	return c.data
+}
+func (c *ApplicationEventContext) setData(data map[string]any) {
 	c.data = data
 }
 

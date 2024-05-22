@@ -26,6 +26,7 @@ mac:ApplicationWillUnhide
 mac:ApplicationWillUpdate
 mac:ApplicationDidChangeTheme!
 mac:ApplicationShouldHandleReopen!
+mac:ApplicationDidGetURLEvent
 mac:WindowDidBecomeKey
 mac:WindowDidBecomeMain
 mac:WindowDidBeginSheet

@@ -50,6 +50,7 @@ export declare const EventTypes: {
 		ApplicationWillUpdate: string,
 		ApplicationDidChangeTheme: string,
 		ApplicationShouldHandleReopen: string,
+		ApplicationDidGetURLEvent: string,
 		WindowDidBecomeKey: string,
 		WindowDidBecomeMain: string,
 		WindowDidBeginSheet: string,
