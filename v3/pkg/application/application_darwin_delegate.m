@@ -170,9 +170,7 @@ extern void cleanup();
         withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
     if( hasListeners(EventApplicationDidGetURLEvent) ) {
         const char* urlString = [[[event paramDescriptorForKeyword:keyDirectObject] stringValue] UTF8String];
-//         processApplicationEvent(EventApplicationDidGetURLEvent, @{ @"URL": @("what the fuck"), @"test":  @(false) });
         processApplicationEvent(EventApplicationDidGetURLEvent, @{@"URL": @(urlString)});
-
     }
 }
 
