@@ -160,7 +160,6 @@ static const char* serializationNSDictionary(void *dict) {
 import "C"
 import (
 	"encoding/json"
-	"fmt"
 	"unsafe"
 
 	"github.com/wailsapp/wails/v3/internal/operatingsystem"
@@ -259,7 +258,6 @@ func processApplicationEvent(eventID C.uint, data unsafe.Pointer) {
 	event := newApplicationEvent(events.ApplicationEventType(eventID))
 
 	if data != nil {
-		fmt.Println("data is not nil!")
 		dataCStrJSON := C.serializationNSDictionary(data)
 		if dataCStrJSON != nil {
 			defer C.free(unsafe.Pointer(dataCStrJSON))
@@ -271,8 +269,6 @@ func processApplicationEvent(eventID C.uint, data unsafe.Pointer) {
 			if err != nil {
 				panic(err)
 			}
-			fmt.Println("data is not nil!", result)
-
 			event.Context().setData(result)
 		}
 	}

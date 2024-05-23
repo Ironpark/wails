@@ -11,7 +11,7 @@ type ApplicationEventContext struct {
 	data map[string]any
 }
 
-func (c ApplicationEventContext) OpenedFiles() []string {
+func (c *ApplicationEventContext) OpenedFiles() []string {
 	files, ok := c.data[openedFiles]
 	if !ok {
 		return nil
@@ -23,15 +23,15 @@ func (c ApplicationEventContext) OpenedFiles() []string {
 	return result
 }
 
-func (c ApplicationEventContext) setOpenedFiles(files []string) {
+func (c *ApplicationEventContext) setOpenedFiles(files []string) {
 	c.data[openedFiles] = files
 }
 
-func (c ApplicationEventContext) setIsDarkMode(mode bool) {
+func (c *ApplicationEventContext) setIsDarkMode(mode bool) {
 	c.data["isDarkMode"] = mode
 }
 
-func (c ApplicationEventContext) getBool(key string) bool {
+func (c *ApplicationEventContext) getBool(key string) bool {
 	mode, ok := c.data[key]
 	if !ok {
 		return false
@@ -43,11 +43,11 @@ func (c ApplicationEventContext) getBool(key string) bool {
 	return result
 }
 
-func (c ApplicationEventContext) IsDarkMode() bool {
+func (c *ApplicationEventContext) IsDarkMode() bool {
 	return c.getBool("isDarkMode")
 }
 
-func (c ApplicationEventContext) HasVisibleWindows() bool {
+func (c *ApplicationEventContext) HasVisibleWindows() bool {
 	return c.getBool("hasVisibleWindows")
 }
 func (c *ApplicationEventContext) Data() map[string]any {
