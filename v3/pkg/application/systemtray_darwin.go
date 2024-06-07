@@ -74,7 +74,6 @@ func (s *macosSystemTray) positionWindow(window *WebviewWindow, offset int) erro
 	if err != nil {
 		return err
 	}
-
 	// Get the current screen trayBounds
 	currentScreen, err := s.getScreen()
 	if err != nil {
@@ -90,13 +89,7 @@ func (s *macosSystemTray) positionWindow(window *WebviewWindow, offset int) erro
 
 	// The Y will be 0 and the X will make the center of the window line up with the center of the system tray
 	windowX := trayBounds.X + systemTrayWidthCenter - windowWidthCenter
-
-	// If the end of the window goes off-screen, move it back enough to be on screen
-	if windowX+window.Width() > screenBounds.Width {
-		windowX = screenBounds.Width - window.Width()
-	}
-	window.SetRelativePosition(windowX, int(C.statusBarHeight())+offset)
-
+	window.SetAbsolutePosition(windowX, screenBounds.Height-offset)
 	return nil
 }
 

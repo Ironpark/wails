@@ -545,7 +545,7 @@ void windowSetAbsolutePosition(void* nsWindow, int x, int y) {
 	NSRect frame = [(WebviewWindow*)nsWindow frame];
 	frame.origin.x = x;
 	frame.origin.y = y;
-	[(WebviewWindow*)nsWindow setFrame:frame display:YES];
+	[(WebviewWindow*)nsWindow setFrame:frame display:TRUE];
 }
 
 // Destroy window
