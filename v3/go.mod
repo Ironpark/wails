@@ -105,4 +105,3 @@ require (
 	mvdan.cc/sh/v3 v3.7.0 // indirect
 )
 
-replace github.com/wailsapp/wails/v3 => ./
